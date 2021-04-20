@@ -3,5 +3,5 @@
 yarn.lock
 yarn-error.log
 /build/
-/pubilc/
+/public/
 /node_modules/
