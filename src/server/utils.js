@@ -1,6 +1,6 @@
 import React from "react";
 import Routes from "../Routes";
-import { StaticRouter } from "react-router-dom";
+import { Route, StaticRouter } from "react-router-dom";
 import { renderToString } from "react-dom/server";
 import { Provider } from "react-redux";
 import store from "../store";
@@ -8,7 +8,14 @@ import store from "../store";
 export const render = (req) => {
   const content = renderToString(
     <Provider store={store()}>
-      <StaticRouter location={req.path}>{Routes}</StaticRouter>
+      {/*<StaticRouter location={req.path}>{Routes}</StaticRouter>*/}
+      <StaticRouter location={req.path}>
+        <div>
+          {Routes.map((route) => {
+            <Route {...route} />;
+          })}
+        </div>
+      </StaticRouter>
     </Provider>
   );
   return `
