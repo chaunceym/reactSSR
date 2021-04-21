@@ -8,7 +8,7 @@ const changeList = (list) => ({
 
 export const getHomeList = () => {
   return (dispatch) => {
-    return axios.get("xxx").then((res) => {
+    return axios.get("localhost:4000/").then((res) => {
       const list = res.data.data;
       console.log(list);
       dispatch(changeList(list));

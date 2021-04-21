@@ -1,10 +1,6 @@
 import app from "./https";
 import React from "react";
-import { renderToString } from "react-dom/server";
-import Home from "../common/Home/Home";
 import { render } from "./utils";
-
-const content = renderToString(<Home />);
 
 // 演示1
 // app.get("/", (req, res) => {
