@@ -19,7 +19,7 @@ class Home extends Component {
         }}
       >
         <div>I am React Component</div>
-        {list.map((item) => (
+        {list?.map((item) => (
           <div key={item.id}>{item.title}</div>
         ))}
         <button
@@ -33,9 +33,11 @@ class Home extends Component {
   }
 }
 
-const mapStateToProps = (state) => ({
-  list: state.home.newsList,
-});
+const mapStateToProps = (state) => {
+  return {
+    list: state.home.list,
+  };
+};
 
 const mapDispatchToProps = (dispatch) => ({
   getList() {

@@ -5,10 +5,9 @@ import { renderToString } from "react-dom/server";
 import { Provider } from "react-redux";
 import store from "../store";
 
-console.log(store);
 export const render = (req) => {
   const content = renderToString(
-    <Provider store={store}>
+    <Provider store={store()}>
       <StaticRouter location={req.path}>{Routes}</StaticRouter>
     </Provider>
   );
