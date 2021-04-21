@@ -1,6 +1,10 @@
-import React from "react";
+import React, { Component } from "react";
+import { connect } from "react-redux";
+import { getHomeList } from "./store/actions";
 
-const Home = () => {
+const Home = (props) => {
+  const { list } = props;
+
   return (
     <div
       style={{
@@ -11,6 +15,9 @@ const Home = () => {
       }}
     >
       <div>I am React Component</div>
+      {list.map((item) => (
+        <div key={item.id}>{item.title}</div>
+      ))}
       <button
         onClick={() => alert("you clicked")}
         style={{ fontSize: 20, padding: 10 }}
@@ -21,4 +28,14 @@ const Home = () => {
   );
 };
 
-export default Home;
+const mapStateToProps = (state) => ({
+  list: state.home.newsList,
+});
+
+const mapDispatchToProps = (dispatch) => ({
+  getHomeList() {
+    dispatch(getHomeList());
+  },
+});
+
+export default connect(mapStateToProps, mapDispatchToProps)(Home);
