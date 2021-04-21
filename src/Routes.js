@@ -1,7 +1,7 @@
 import React from "react";
 import { Route } from "react-router-dom";
-import Home from "./common/Home";
-import Login from "./common/Login";
+import Home from "./common/Home/Home";
+import Login from "./common/Login/Login";
 
 export default (
   <div>
