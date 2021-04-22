@@ -1,6 +1,9 @@
 import app from "./https";
 import React from "react";
 import { render } from "./utils";
+import { matchRoutes } from "react-router-config";
+import Routes from "../Routes";
+import store from "../store";
 
 // 演示1
 // app.get("/", (req, res) => {
@@ -53,5 +56,6 @@ import { render } from "./utils";
 // });
 
 app.get("*", (req, res) => {
+
   res.send(render(req));
 });

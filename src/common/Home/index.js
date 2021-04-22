@@ -4,11 +4,14 @@ import { getHomeList } from "./store/actions";
 
 class Home extends Component {
   componentDidMount() {
+    console.log("mount");
     this.props.getList();
   }
 
   render() {
     const { list } = this.props;
+    console.log("render");
+    console.log(list);
     return (
       <div
         style={{
@@ -44,5 +47,10 @@ const mapDispatchToProps = (dispatch) => ({
     dispatch(getHomeList());
   },
 });
+
+Home.loadData = (store) => {
+  console.log("server loadData");
+  return store.dispatch(getHomeList());
+};
 
 export default connect(mapStateToProps, mapDispatchToProps)(Home);
