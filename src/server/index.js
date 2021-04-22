@@ -4,6 +4,7 @@ import { render } from "./utils";
 import { matchRoutes } from "react-router-config";
 import Routes from "../Routes";
 import { getServerStore } from "../store";
+import proxy from "express-http-proxy";
 
 // 演示1
 // app.get("/", (req, res) => {
@@ -54,6 +55,16 @@ import { getServerStore } from "../store";
 //     </html>
 //   `);
 // });
+
+app.use(
+  "/api",
+  proxy("http://localhost:4000", {
+    proxyReqPathResolver: (req) => {
+      console.log("/api" + req.url);
+      return "/api" + req.url;
+    },
+  })
+);
 
 app.get("*", (req, res) => {
   const serverStore = getServerStore();
