@@ -2,17 +2,12 @@ import React, { Component, useEffect } from "react";
 import { connect } from "react-redux";
 import { getHomeList } from "./store/actions";
 import styles from "./style.css";
+import withStyle from "../withStyle";
 
 class Home extends Component {
   componentDidMount() {
     !this.props.list.length && this.props.getList();
     console.log("mount");
-  }
-
-  componentWillMount() {
-    if (this.props.staticContext) {
-      this.props.staticContext.css.push(styles._getCss());
-    }
   }
 
   render() {
@@ -55,7 +50,10 @@ const mapDispatchToProps = (dispatch) => ({
   },
 });
 
-const exportHome = connect(mapStateToProps, mapDispatchToProps)(Home);
+const exportHome = connect(
+  mapStateToProps,
+  mapDispatchToProps
+)(withStyle(Home, styles));
 
 exportHome.loadData = (store) => {
   console.log("server loadData");
