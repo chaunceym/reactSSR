@@ -3,6 +3,7 @@ import { connect } from "react-redux";
 import { getHomeList } from "./store/actions";
 import styles from "./style.css";
 import withStyle from "../withStyle";
+import { Helmet } from "react-helmet";
 
 class Home extends Component {
   componentDidMount() {
@@ -15,25 +16,31 @@ class Home extends Component {
     console.log("render");
     console.log(list);
     return (
-      <div
-        style={{
-          padding: 10,
-          fontSize: 20,
-          backgroundColor: "#000",
-          color: "#fff",
-        }}
-      >
-        <div>I am React Component</div>
-        <button
-          onClick={() => alert("you clicked")}
-          style={{ fontSize: 20, padding: 10 }}
+      <>
+        <Helmet>
+          <title>这是一场关于React SSR的分享</title>
+          <meta name="description" content="分享快完了,坚持一下,程序改变生活" />
+        </Helmet>
+        <div
+          style={{
+            padding: 10,
+            fontSize: 20,
+            backgroundColor: "#000",
+            color: "#fff",
+          }}
         >
-          click
-        </button>
-        {list?.map((item) => (
-          <h1 key={item.id}>{item.title}</h1>
-        ))}
-      </div>
+          <div>I am React Component</div>
+          <button
+            onClick={() => alert("you clicked")}
+            style={{ fontSize: 20, padding: 10 }}
+          >
+            click
+          </button>
+          {list?.map((item) => (
+            <h1 key={item.id}>{item.title}</h1>
+          ))}
+        </div>
+      </>
     );
   }
 }
