@@ -44,7 +44,7 @@ const mapStateToProps = (state) => {
 
 const mapDispatchToProps = (dispatch) => ({
   getList() {
-    dispatch(getHomeList(false));
+    dispatch(getHomeList());
   },
 });
 
@@ -52,7 +52,7 @@ const exportHome = connect(mapStateToProps, mapDispatchToProps)(Home);
 
 exportHome.loadData = (store) => {
   console.log("server loadData");
-  return store.dispatch(getHomeList(true));
+  return store.dispatch(getHomeList());
 };
 
 export default exportHome;

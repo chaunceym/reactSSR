@@ -6,13 +6,13 @@ const changeList = (list) => ({
   list,
 });
 
-const getUrl = (server) => {
-  return server ? "http://localhost:4000/api/news.json" : "/api/news.json";
-};
+// const getUrl = (server) => {
+//   return server ? "http://localhost:4000/api/news.json" : "/api/news.json";
+// };
 
-export const getHomeList = (server) => {
-  return (dispatch) => {
-    return axios.get(getUrl(server)).then((res) => {
+export const getHomeList = () => {
+  return (dispatch, getState, axiosInstance) => {
+    return axiosInstance.get("/api/news.json").then((res) => {
       const list = res.data.data;
       dispatch(changeList(list));
     });
