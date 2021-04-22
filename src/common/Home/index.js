@@ -4,8 +4,7 @@ import { getHomeList } from "./store/actions";
 
 class Home extends Component {
   componentDidMount() {
-    console.log("mount");
-    this.props.getList();
+    !this.props.list.length && this.props.getList();
   }
 
   render() {
@@ -22,15 +21,15 @@ class Home extends Component {
         }}
       >
         <div>I am React Component</div>
-        {list?.map((item) => (
-          <div key={item.id}>{item.title}</div>
-        ))}
         <button
           onClick={() => alert("you clicked")}
           style={{ fontSize: 20, padding: 10 }}
         >
           click
         </button>
+        {list?.map((item) => (
+          <h1 key={item.id}>{item.title}</h1>
+        ))}
       </div>
     );
   }
@@ -48,9 +47,11 @@ const mapDispatchToProps = (dispatch) => ({
   },
 });
 
-Home.loadData = (store) => {
+const exportHome = connect(mapStateToProps, mapDispatchToProps)(Home);
+
+exportHome.loadData = (store) => {
   console.log("server loadData");
   return store.dispatch(getHomeList());
 };
 
-export default connect(mapStateToProps, mapDispatchToProps)(Home);
+export default exportHome;

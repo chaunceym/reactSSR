@@ -3,7 +3,7 @@ import React from "react";
 import { render } from "./utils";
 import { matchRoutes } from "react-router-config";
 import Routes from "../Routes";
-import store from "../store";
+import { serverStore } from "../store";
 
 // 演示1
 // app.get("/", (req, res) => {
@@ -56,6 +56,15 @@ import store from "../store";
 // });
 
 app.get("*", (req, res) => {
+  const matchedRoutes = matchRoutes(Routes, req.path);
+  const promises = [];
+  matchedRoutes.forEach((item) => {
+    if (item.route.loadData) {
+      promises.push(item.route.loadData(serverStore));
+    }
+  });
 
-  res.send(render(req));
+  Promise.all(promises).then(() => {
+    res.send(render(req));
+  });
 });

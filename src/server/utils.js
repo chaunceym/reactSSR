@@ -3,22 +3,10 @@ import Routes from "../Routes";
 import { StaticRouter } from "react-router-dom";
 import { renderToString } from "react-dom/server";
 import { Provider } from "react-redux";
-import store from "../store";
+import { serverStore } from "../store";
 import { renderRoutes, matchRoutes } from "react-router-config";
 
-const serverStore = store();
-
 export const render = (req) => {
-  const matchedRoutes = matchRoutes(Routes, req.path);
-  const promises = [];
-  matchedRoutes.forEach((item) => {
-    if (item.route.loadData) {
-      promises.push(item.route.loadData(serverStore));
-    }
-  });
-
-  Promise.all(promises).then((res) => {});
-
   const content = renderToString(
     <Provider store={serverStore}>
       {/*<StaticRouter location={req.path}>{Routes}</StaticRouter>*/}
@@ -27,6 +15,7 @@ export const render = (req) => {
       </StaticRouter>
     </Provider>
   );
+
   return `
     <html>
       <head>
