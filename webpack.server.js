@@ -18,6 +18,7 @@ const serverConfig = {
             loader: "css-loader",
             options: {
               modules: true,
+              esModule: false, // 解决 _getCss 输出为 object module
             },
           },
         ],

@@ -3,7 +3,7 @@ import Header from "./Header";
 import { renderRoutes } from "react-router-config";
 
 const App = (props) => {
-  console.log(props.route);
+  // console.log(props.route);
   return (
     <div>
       <Header />

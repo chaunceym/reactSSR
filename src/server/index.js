@@ -77,6 +77,7 @@ app.get("*", (req, res) => {
   });
 
   Promise.all(promises).then(() => {
-    res.send(render(serverStore, Routes, req));
+    let context = { css: [] };
+    res.send(render(serverStore, Routes, req, context));
   });
 });

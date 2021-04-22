@@ -9,6 +9,12 @@ class Home extends Component {
     console.log("mount");
   }
 
+  componentWillMount() {
+    if (this.props.staticContext) {
+      this.props.staticContext.css.push(styles._getCss());
+    }
+  }
+
   render() {
     const { list } = this.props;
     console.log("render");
