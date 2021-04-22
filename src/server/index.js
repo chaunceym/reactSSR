@@ -3,7 +3,7 @@ import React from "react";
 import { render } from "./utils";
 import { matchRoutes } from "react-router-config";
 import Routes from "../Routes";
-import { serverStore } from "../store";
+import { getServerStore } from "../store";
 
 // 演示1
 // app.get("/", (req, res) => {
@@ -56,6 +56,7 @@ import { serverStore } from "../store";
 // });
 
 app.get("*", (req, res) => {
+  const serverStore = getServerStore();
   const matchedRoutes = matchRoutes(Routes, req.path);
   const promises = [];
   matchedRoutes.forEach((item) => {
@@ -65,6 +66,6 @@ app.get("*", (req, res) => {
   });
 
   Promise.all(promises).then(() => {
-    res.send(render(req));
+    res.send(render(serverStore, Routes, req));
   });
 });
