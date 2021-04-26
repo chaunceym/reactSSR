@@ -1,7 +1,0 @@
-.idea
-.vscode
-yarn.lock
-yarn-error.log
-/build/
-/public/
-/node_modules/

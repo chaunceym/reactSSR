@@ -10,8 +10,8 @@ app.all("*", function (req, res, next) {
   next();
 });
 
-app.use(express.static("public"));
+app.use(express.static("static"));
 
 app.listen(4000, () => {
-  console.log("running 4000");
+  console.log("server running on 4000");
 });

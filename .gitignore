@@ -5,3 +5,5 @@ yarn-error.log
 /build/
 /public/
 /node_modules/
+/share_with_react_ssr/
+package-lock.json
